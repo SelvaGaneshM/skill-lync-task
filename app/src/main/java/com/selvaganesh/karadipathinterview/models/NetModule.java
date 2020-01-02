@@ -3,6 +3,7 @@ package com.selvaganesh.karadipathinterview.models;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.selvaganesh.karadipathinterview.AppController;
+import com.selvaganesh.karadipathinterview.repro.ApiSsl;
 import com.selvaganesh.karadipathinterview.repro.AppRepo;
 import com.selvaganesh.karadipathinterview.repro.AppRepoApi;
 import com.selvaganesh.karadipathinterview.utils.ApiConstant;
@@ -42,6 +43,8 @@ public class NetModule {
                 .readTimeout(180, TimeUnit.SECONDS)
                 .writeTimeout(180, TimeUnit.SECONDS)
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(ApiSsl.getInterceptor())
+                .hostnameVerifier(ApiSsl.getHostnameVerifier())
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiConstant.BASE_URL)

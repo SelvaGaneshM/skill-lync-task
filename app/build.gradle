@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.selvaganesh.karadipathinterview"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -17,13 +17,91 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
+
+    // Lottie SplashScreen Animation
+    implementation 'com.airbnb.android:lottie:3.3.1'
+
+    //Support - Design
+    implementation('com.android.support:design:28.0.0-rc01') {
+        exclude group: 'com.android.support'
+    }
+
+    //Support - RecyclerView
+    implementation('com.android.support:recyclerview-v7:28.0.0-rc01') {
+        exclude group: 'com.android.support'
+    }
+
+    //Support - CardView
+    implementation('com.android.support:cardview-v7:28.0.0-rc01') {
+        exclude group: 'com.android.support'
+    }
+
+    //Support - support
+    implementation('com.android.support:support-v13:28.0.0') {
+        exclude group: 'com.android.support'
+    }
+
+    /*ButterKnife*/
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
+    /*OkHttp*/
+    implementation 'com.squareup.okhttp3:okhttp:4.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.3.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.10.0'
+
+    /*RxJava*/
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.16'
+    implementation 'com.artemzin.rxjava:proguard-rules:1.3.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    /*Retrofit*/
+    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.0'
+
+    /*Glide*/
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation 'jp.wasabeef:glide-transformations:4.1.0'
+
+    /*Picasso*/
+    //implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'jp.wasabeef:picasso-transformations:2.1.0'
+
+    /*Gson*/
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // Muti screen Support
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    /* Dragger */
+    implementation 'com.google.dagger:dagger:2.25.4'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.25.4'
+
+    implementation 'com.google.dagger:dagger-android:2.25.4'
+    implementation 'com.google.dagger:dagger-android-support:2.25.4'
+    // if you use the support libraries
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.4'
+
+    /* Encryption for SharedPref aescrypt */
+    /* Ref: https://github.com/PDDStudio/EncryptedPreferences*/
+    implementation 'com.scottyab:aescrypt:0.0.1'
+
+    /*AVLoadingIndicatorView*/
+    implementation 'com.wang.avi:library:2.1.3'
+
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

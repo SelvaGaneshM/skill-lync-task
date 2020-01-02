@@ -1,5 +1,6 @@
 package com.selvaganesh.karadipathinterview.ui.splash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -7,9 +8,12 @@ import android.os.Message;
 import com.airbnb.lottie.LottieAnimationView;
 import com.selvaganesh.karadipathinterview.R;
 import com.selvaganesh.karadipathinterview.base.BaseActivity;
+import com.selvaganesh.karadipathinterview.ui.productlist.ProductListActivity;
 import com.selvaganesh.karadipathinterview.utils.NetworkUtils;
 import com.selvaganesh.karadipathinterview.utils.UiUtils;
 
+
+import java.io.Serializable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +63,11 @@ public class SplashScreenActivity extends BaseActivity {
     private void setObservable() {
         viewModel.productsResponseMLD.observe(this, productListResposen -> {
             if (productListResposen != null && productListResposen.getResultCnt() == 72) {
-                UiUtils.showToast(this, "" + productListResposen.getSearchList().size());
+                Intent intent = new Intent(this, ProductListActivity.class);
+                Bundle args = new Bundle();
+                args.putSerializable("ARRAYLIST",(Serializable) productListResposen);
+                intent.putExtra("BUNDLE",args);
+                startActivity(intent);
             }
         });
     }

@@ -2,7 +2,9 @@ package com.selvaganesh.karadipathinterview.response.productlist;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SearchListItem{
+import java.io.Serializable;
+
+public class SearchListItem implements Serializable {
 
 	@SerializedName("CategoryId")
 	private String categoryId;

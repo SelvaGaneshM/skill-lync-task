@@ -1,9 +1,10 @@
 package com.selvaganesh.karadipathinterview.response.productlist;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class ProductListResposen{
+public class ProductListResposen implements Serializable {
 
 	@SerializedName("errcode")
 	private String errcode;

@@ -6,21 +6,15 @@
     android:orientation="vertical"
     android:padding="@dimen/_5sdp">
 
-    <ImageView
-        android:id="@+id/img_product"
-        android:layout_width="@dimen/_90sdp"
-        android:layout_height="@dimen/_90sdp"
-        android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/txt_product_name"
+        android:id="@+id/txt_phoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="@dimen/_14sdp"
         android:textColor="@color/white"
-        tools:text="Sample Text" />
+        tools:text="Phone Number" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,16 +22,57 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/txt_price"
+            android:id="@+id/txt_callType"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:text="Price : "
             android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/_2sdp"
             android:textSize="@dimen/_12sdp" />
 
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:background="@color/white"
+            android:layout_height="@dimen/_10sdp"/>
+
         <TextView
-            android:id="@+id/txt_stock"
+            android:id="@+id/txt_callDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="In Stock"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:textAlignment="viewEnd"
+            android:textSize="@dimen/_12sdp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/txt_callDayTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="Price : "
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp" />
+
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:background="@color/white"
+            android:layout_height="@dimen/_10sdp"/>
+
+        <TextView
+            android:id="@+id/txt_callDuration"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -47,5 +82,10 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@color/white"/>
 
 </LinearLayout>

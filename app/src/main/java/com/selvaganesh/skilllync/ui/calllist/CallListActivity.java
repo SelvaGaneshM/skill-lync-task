@@ -1,5 +1,9 @@
 package com.selvaganesh.skilllync.ui.calllist;
 
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -11,6 +15,7 @@ import com.selvaganesh.skilllync.R;
 import com.selvaganesh.skilllync.base.BaseActivity;
 import com.selvaganesh.skilllync.db.DatabaseClient;
 import com.selvaganesh.skilllync.db.entry.CallLogs;
+import com.selvaganesh.skilllync.service.TelemanagerService;
 import com.selvaganesh.skilllync.utils.UiUtils;
 
 
@@ -28,6 +33,9 @@ public class CallListActivity extends BaseActivity {
     private String TAG = CallListActivity.class.getSimpleName();
     private CallListAdaprtor adaprtor;
     private List<CallLogs> callLogs = new ArrayList<>();
+    private static final int REQUEST_CODE = 0;
+    private DevicePolicyManager mDPM;
+    private ComponentName mAdminName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +50,23 @@ public class CallListActivity extends BaseActivity {
         rycProductList.setLayoutManager(new GridLayoutManager(this, 1));
         adaprtor = new CallListAdaprtor(this);
         rycProductList.setAdapter(adaprtor);
+        try {
+            mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+            mAdminName = new ComponentName(this, DeviceAdminDemo.class);
+
+            if (!mDPM.isAdminActive(mAdminName)) {
+                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+                intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Click on Activate button to secure your application.");
+                startActivityForResult(intent, REQUEST_CODE);
+            } else {
+                // mDPM.lockNow();
+                 Intent intent = new Intent(this, TelemanagerService.class);
+                startService(intent);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void getDBDatas() {
@@ -60,5 +85,14 @@ public class CallListActivity extends BaseActivity {
                 adaprtor.setData(callLogs);
             }
         }.execute();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_CODE == requestCode) {
+            Intent intent = new Intent(this, TelemanagerService.class);
+            startService(intent);
+        }
     }
 }
